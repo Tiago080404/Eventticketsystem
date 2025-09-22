@@ -2,6 +2,7 @@ package com.eventticketsystem.eventticketsystem.Controller;
 
 import com.eventticketsystem.eventticketsystem.Entity.Events;
 import com.eventticketsystem.eventticketsystem.Service.EventsService;
+import com.eventticketsystem.eventticketsystem.Service.TicketService;
 import com.eventticketsystem.eventticketsystem.dto.BuyTicketRequest;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,9 +13,11 @@ import java.util.List;
 public class EventsController {
 
     private final EventsService eventsService;
+    private final TicketService ticketService;
 
-    public EventsController(EventsService eventsService){
+    public EventsController(EventsService eventsService, TicketService ticketService){
         this.eventsService = eventsService;
+        this.ticketService = ticketService;
     }
 
     @GetMapping
@@ -35,7 +38,7 @@ public class EventsController {
     @PostMapping("/{name}/buy")
     public Events buyTicket(@PathVariable("name") String name, @RequestBody BuyTicketRequest request){
         System.out.println("Controller"+request.getUser());
-        Events doas=  eventsService.buyTicket(name,request);
+        Events doas=  ticketService.buyTicket(name,request);
         System.out.println("Hasjdfak");//er kommt hier nicht hin
         return  doas;
     }

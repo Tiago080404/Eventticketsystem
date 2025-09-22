@@ -2,10 +2,9 @@ package com.eventticketsystem.eventticketsystem.Controller;
 
 import com.eventticketsystem.eventticketsystem.Entity.Tickets;
 import com.eventticketsystem.eventticketsystem.Service.TicketService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.eventticketsystem.eventticketsystem.dto.TicketTransferRequest;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +23,10 @@ public class TicketsController {
         List<Tickets> ticketsss =ticketService.getTicketsByUserEmail(email);
         System.out.println(ticketsss);
         return ticketsss;
+    }
+
+    @PostMapping("/transfer")
+    public ResponseEntity<?> transferTickets(@RequestBody TicketTransferRequest ticketTransferRequest){
+        return ticketService.ticketTransfer(ticketTransferRequest);
     }
 }
