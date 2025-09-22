@@ -54,7 +54,7 @@ public class EventsService {
             throw new RuntimeException("Not enough Tickets to buy that amount for this event");
         }
 
-        if(boughtTicket.getPrice()>request.getMoneypaid()){
+        if(boughtTicket.getPrice()*request.getAmount()>request.getMoneypaid()){
             throw new RuntimeException("Not enough money for this event");
         }
         boughtTicket.setAvailabletickets( boughtTicket.getAvailabletickets() - request.getAmount());
