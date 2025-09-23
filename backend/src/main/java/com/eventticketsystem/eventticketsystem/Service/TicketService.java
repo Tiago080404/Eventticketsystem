@@ -58,8 +58,6 @@ public class TicketService {
         User userEntity = userRepository.findByEmail(request.getUser())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-
-        //ticket in tickets hinzufügen
         Tickets tickets = new Tickets();
         tickets.setEvents(boughtTicket); // ist ja das event entity
         tickets.setUser(userEntity); // muss user repo anlegen um ganzen user zu bekommen
@@ -102,10 +100,9 @@ public class TicketService {
             ticketRepository.save(tickets);
 
 
-            //email mit qr code
-            String uuid = UUID.randomUUID().toString();
 
-            ByteArrayOutputStream stream = QRCode.from(uuid).withSize(255,255).stream();
+
+            ByteArrayOutputStream stream = QRCode.from(tickets.getTicket_UUID()).withSize(255,255).stream();
             byte[] qrBytes = stream.toByteArray();
             ByteArrayResource qrAttachment = new ByteArrayResource(qrBytes);
 
