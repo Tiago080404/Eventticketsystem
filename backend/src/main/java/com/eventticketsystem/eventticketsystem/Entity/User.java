@@ -1,9 +1,6 @@
 package com.eventticketsystem.eventticketsystem.Entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "users")
@@ -15,6 +12,9 @@ public class User {
 
     @Column(nullable = false)
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
 
     public String getEmail(){
@@ -28,5 +28,9 @@ public class User {
     }
     public void setPassword(){
         this.password = password;
+    }
+    public Role getRole(){return role;}
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

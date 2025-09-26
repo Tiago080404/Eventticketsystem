@@ -41,6 +41,7 @@ public class SecurityConfig {
                 .cors((cors)->cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests((authorize)->authorize.requestMatchers("/api/auth/login")
                         .permitAll()
+                        .requestMatchers("/api/events/create").hasAnyRole("ORGANIZER")
                         .anyRequest()
                         .authenticated())
                 .sessionManagement(sess->sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

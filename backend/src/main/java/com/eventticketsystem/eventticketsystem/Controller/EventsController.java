@@ -25,7 +25,7 @@ public class EventsController {
         return eventsService.getAllEvents();
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public Events createEvent(@RequestBody Events events){
         return eventsService.makeEvent(events);
     }
