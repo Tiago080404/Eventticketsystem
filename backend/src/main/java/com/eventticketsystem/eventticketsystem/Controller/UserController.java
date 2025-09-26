@@ -1,7 +1,10 @@
 package com.eventticketsystem.eventticketsystem.Controller;
 
 import com.eventticketsystem.eventticketsystem.Entity.AuthRequest;
+import com.eventticketsystem.eventticketsystem.Entity.User;
 import com.eventticketsystem.eventticketsystem.Service.JwtService;
+import com.eventticketsystem.eventticketsystem.Service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -10,6 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 @RestController
@@ -20,14 +26,17 @@ public class UserController {
 
 
     private final AuthenticationManager authenticationManager;
-    public UserController(AuthenticationManager authenticationManager, JwtService jwtService){
+    private final UserService userService;
+
+    public UserController(AuthenticationManager authenticationManager, JwtService jwtService, UserService userService){
         this.authenticationManager=authenticationManager;
         this.jwtService = jwtService;
+        this.userService = userService;
     }
 
 
-    @PostMapping("/login")//dann auch return type ändern
-    public String loginHandler(@RequestBody AuthRequest authRequest){
+    @PostMapping("/login")
+    public ResponseEntity<Map<String, Object>> loginHandler(@RequestBody AuthRequest authRequest){
         try{
             System.out.println("trying to login");
             Authentication authenticationRequest = UsernamePasswordAuthenticationToken.unauthenticated(authRequest.getEmail(),authRequest.getPassword());
@@ -35,7 +44,21 @@ public class UserController {
 
             //hier noch responseentity 200 wenn geht + jwt mitgeben
             if(authenticationresponse.isAuthenticated()){
-                return jwtService.generateToken(authRequest.getEmail());
+
+                String token = jwtService.generateToken(authRequest.getEmail());
+
+                User user = userService.getUserByEmail(authRequest.getEmail())
+                        .orElseThrow(()->new UsernameNotFoundException("User not found"));
+
+                Map<String, Object> userdata = new HashMap<>();
+                userdata.put("username",user.getEmail());
+                userdata.put("role",user.getPassword());
+
+                Map<String,Object> response = new HashMap<>();
+                response.put("token",token);
+                response.put("user",userdata);
+                return ResponseEntity.ok(response);
+
             }else {
                 throw new UsernameNotFoundException("Invalid user request!"); //hier vllt eine responseentity auch
             }
