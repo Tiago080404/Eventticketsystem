@@ -10,6 +10,8 @@ interface Events {
 
 function AllEventsPage() {
   const [events, setEvents] = useState<Events[]>([]);
+  const [allEvents, setAllEvents] = useState<Events[]>([]);
+  const [value, setValue] = useState("");
   const navigate = useNavigate();
 
   async function getAllEvents(): Promise<Events[]> {
@@ -33,12 +35,28 @@ function AllEventsPage() {
       try {
         const events = await getAllEvents();
         setEvents(events);
+        setAllEvents(events);
       } catch (error) {
         console.error("Failed to fetch events", error);
       }
     };
     getEvents();
   }, []);
+
+  useEffect(() => {
+    const filterEvents = () => {
+      console.log(value);
+      if (value === "") {
+        setEvents(allEvents);
+      } else {
+        let filteredEvents = events.filter((event) =>
+          event.name.toLowerCase().includes(value.toLowerCase())
+        );
+        setEvents(filteredEvents);
+      }
+    };
+    filterEvents();
+  }, [value]);
 
   const eventsList = events.map((event, index) => (
     <div
@@ -59,6 +77,8 @@ function AllEventsPage() {
           type="text"
           placeholder="Event suchen"
           className="rounded-xl p-2 text-black"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
         />
         <button>Search</button>
       </div>
