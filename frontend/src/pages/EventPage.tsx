@@ -1,6 +1,6 @@
 function EventPage(){
     return(
-        <><div></div></>
+        <><div>Event</div></>
     )
 }
 export default EventPage
