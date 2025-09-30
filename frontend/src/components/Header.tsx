@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Header() {
-  const [searchValue, setSearchValue] = useState("")
+type ChildProps = {
+  onInputChange: (value: string) => void;
+};
+
+function Header({ onInputChange }: ChildProps) {
+  const [searchValue, setSearchValue] = useState("");
   return (
     <section className="relative h-[60vh] bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 flex items-center justify-center text-center text-white">
       <div className="absolute top-0 right-0 flex p-6 justify-end gap-6">
@@ -20,8 +24,12 @@ function Header() {
           placeholder="Event suchen"
           value={searchValue}
           className="rounded-xl p-2 text-black border-solid border-blue-400 border-4"
-          onChange={(e)=>setSearchValue(e.target.value)}
+          onChange={(e) => {
+            setSearchValue(e.target.value);
+            onInputChange(e.target.value);
+          }}
         />
+        {searchValue}
         <button className="">Search</button>
       </div>
 

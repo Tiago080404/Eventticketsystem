@@ -1,13 +1,22 @@
+import { useState } from "react";
 import Header from "../components/Header";
 import { Link } from "react-router-dom";
 
 function Home() {
+  const [text, setText] = useState("");
+  const handleInputChange = (value: string) => {
+    if (value.length >= 2) {
+      setText(value);
+    } else {
+      setText("");
+    }
+  };
   return (
     <>
       <div className="w-full min-h-screen bg-gray-50 text-gray-900 bg-gradient-to-r from-purple-600 via-pink-500 to-red-500">
-        <Header></Header>
+        <Header onInputChange={handleInputChange}></Header>
         {/*  <div className="flex justify-center flex-wrap">{eventsList}</div> */}
-
+        {text}
         <section className="py-12 px-6 max-w-6xl mx-auto">
           <h2 className="text-2xl font-bold mb-6">Kategorien</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
