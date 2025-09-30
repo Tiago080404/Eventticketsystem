@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Events } from "./AllEventsPage";
+import { QRCodeSVG } from "qrcode.react";
 
 interface Tickets {
   ticketId: number;
@@ -7,7 +8,7 @@ interface Tickets {
   user: User;
   quantity: number;
   purchased_at: string;
-  ticketUUID: string;
+  ticket_UUID: string;
 }
 
 interface User {
@@ -15,9 +16,10 @@ interface User {
   password: string;
   role: string;
 }
-
 function UserTickets() {
   const [tickets, setTickets] = useState<Tickets[]>([]);
+  const [qrCode, setQrCode] = useState(false);
+  const [activeTicket, setActiveTicket] = useState<string | null>(null);
 
   async function getUserTickets(): Promise<Tickets[]> {
     const response = await fetch(
@@ -50,11 +52,6 @@ function UserTickets() {
     getTickets();
   }, []);
 
-  const ticketList = tickets.map((ticket, index) => (
-    <div key={index}>
-      <h3>{ticket.events.name}</h3>
-    </div>
-  ));
   return (
     <>
       <div className="w-full min-h-screen bg-gray-50 p-6">
@@ -91,10 +88,25 @@ function UserTickets() {
                 </div>
 
                 <div className="flex justify-center items-center">
-                  <button className="bg-blue-400 rounded-xl p-1 text-black hover:scale-105 transform transition cursor-pointer">
-                    See Your Ticket
+                  <button
+                    className="bg-blue-400 rounded-xl p-1 text-black hover:scale-105 transform transition cursor-pointer"
+                    onClick={() => {
+                      setQrCode(!qrCode);
+                      setActiveTicket(ticket.ticket_UUID);
+                    }}
+                  >
+                    See TicketCode
                   </button>
                 </div>
+
+                {activeTicket === ticket.ticket_UUID && qrCode ? (
+                  <div className="mt-4 flex justify-center">
+                    <QRCodeSVG
+                      value={ticket.ticket_UUID}
+                      size={128}
+                    ></QRCodeSVG>
+                  </div>
+                ) : null}
               </div>
             ))}
           </div>
