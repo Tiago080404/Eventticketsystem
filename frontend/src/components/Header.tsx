@@ -11,6 +11,15 @@ function Header() {
           Profile
         </Link>
       </div>
+      <div className="absolute top-0 left-25 right-25">
+        <input type="date" className="text-black rounded-xl p-2" />
+        <input
+          type="text"
+          placeholder="Event suchen"
+          className="rounded-xl p-2 text-black border-solid border-blue-400 border-4"
+        />
+        <button className="">Search</button>
+      </div>
 
       <div className="flex flex-1 items-center justify-center text-center">
         <div>

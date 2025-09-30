@@ -21,10 +21,10 @@ public class TicketsController {
     @GetMapping("/user/{email}")
     public List<Tickets> getTicketsByUsername(@PathVariable String email){
         List<Tickets> ticketsss =ticketService.getTicketsByUserEmail(email);
-        System.out.println(ticketsss);
+        //System.out.println(ticketsss);
         return ticketsss;
     }
-
+//neue route machen mit dto ohne user feldern für alle tickets bvon einem user bekommen
     @PostMapping("/transfer")
     public ResponseEntity<?> transferTickets(@RequestBody TicketTransferRequest ticketTransferRequest){
         return ticketService.ticketTransfer(ticketTransferRequest);

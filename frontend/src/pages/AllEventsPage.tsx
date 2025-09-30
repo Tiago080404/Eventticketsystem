@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-interface Events {
+export interface Events {
   name: string;
   date: string;
   availableTickets: number;
@@ -71,12 +71,12 @@ function AllEventsPage() {
   ));
 
   return (
-    <>
+    <>{/* justify center flex */}
       <div className="absolute top-0 left-25 right-25">
         <input
           type="text"
           placeholder="Event suchen"
-          className="rounded-xl p-2 text-black"
+          className="rounded-xl p-2 text-black border-solid border-blue-400 border-4"
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />

@@ -1,10 +1,7 @@
-import { useEffect, useState } from "react";
 import Header from "../components/Header";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Home() {
-  const navigate = useNavigate();
-
   return (
     <>
       <div className="w-full min-h-screen bg-gray-50 text-gray-900 bg-gradient-to-r from-purple-600 via-pink-500 to-red-500">
