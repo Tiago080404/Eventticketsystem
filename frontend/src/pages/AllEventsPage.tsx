@@ -45,7 +45,6 @@ function AllEventsPage() {
 
   useEffect(() => {
     const filterEvents = () => {
-      console.log(value);
       if (value === "") {
         setEvents(allEvents);
       } else {
@@ -71,7 +70,8 @@ function AllEventsPage() {
   ));
 
   return (
-    <>{/* justify center flex */}
+    <>
+      {/* justify center flex */}
       <div className="absolute top-0 left-25 right-25">
         <input
           type="text"

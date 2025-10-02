@@ -46,4 +46,10 @@ public class EventsService {
                 .orElseThrow(()->new RuntimeException("Event not found: " + name));
     }
 
+    public List<Events> getEventsBySearch(String input){
+        System.out.println(input);
+
+        return eventsRepository.getEventsBySearch(input);
+    }
+
 }

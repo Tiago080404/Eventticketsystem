@@ -42,4 +42,10 @@ public class EventsController {
         System.out.println("Hasjdfak");//er kommt hier nicht hin
         return  doas;
     }
+
+    @GetMapping("/search/{input}")
+    public List<Events> searchEventsByInput(@PathVariable("input") String input){
+        System.out.println(input);
+        return eventsService.getEventsBySearch(input);
+    }
 }
