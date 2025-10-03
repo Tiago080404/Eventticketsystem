@@ -3,9 +3,16 @@ import { Link } from "react-router-dom";
 
 type ChildProps = {
   onInputChange: (value: string) => void;
+  searchedEvents: Events[];
 };
+export interface Events {
+  name: string;
+  date: string;
+  availableTickets: number;
+  price: number;
+}
 
-function Header({ onInputChange }: ChildProps) {
+function Header({ onInputChange, searchedEvents }: ChildProps) {
   const [searchValue, setSearchValue] = useState("");
   return (
     <section className="relative h-[60vh] bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 flex items-center justify-center text-center text-white">
@@ -29,8 +36,26 @@ function Header({ onInputChange }: ChildProps) {
             onInputChange(e.target.value);
           }}
         />
-        {searchValue}
         <button className="">Search</button>
+
+        {searchedEvents.length > 0 && (
+          <ul className=" bg-white text-black mt-1 rounded-xl shadow-lg max-h-60 overflow-y-auto z-10">
+            {searchedEvents.map((event, idx) => (
+              <li
+                key={idx}
+                className="p-2 hover:bg-gray-200 cursor-pointer rounded-lg"
+              >
+                <Link to={`/event/${event.name}`} className="block">
+                  <div className="font-semibold">{event.name}</div>
+                  <div className="text-sm text-gray-600">
+                    {event.date} • {event.availableTickets} Tickets ab{" "}
+                    {event.price}€
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
 
       <div className="flex flex-1 items-center justify-center text-center">

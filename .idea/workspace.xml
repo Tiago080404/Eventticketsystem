@@ -6,11 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3564c6a0-0295-4870-92c4-af7e2d751ef9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Controller/EventsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Controller/EventsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Repository/EventsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Repository/EventsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Service/EventsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Service/EventsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/AllEventsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/AllEventsPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Home.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +112,7 @@
       <workItem from="1759149232881" duration="759000" />
       <workItem from="1759225616662" duration="2318000" />
       <workItem from="1759237039183" duration="6519000" />
-      <workItem from="1759433961942" duration="1479000" />
+      <workItem from="1759433961942" duration="1909000" />
     </task>
     <servers />
   </component>

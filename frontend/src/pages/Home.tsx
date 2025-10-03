@@ -59,7 +59,7 @@ function Home() {
   return (
     <>
       <div className="w-full min-h-screen bg-gray-50 text-gray-900 bg-gradient-to-r from-purple-600 via-pink-500 to-red-500">
-        <Header onInputChange={handleInputChange}></Header>
+        <Header onInputChange={handleInputChange} searchedEvents={events}></Header>
         {/*  <div className="flex justify-center flex-wrap">{eventsList}</div> */}
         {text}
         <section className="py-12 px-6 max-w-6xl mx-auto">
