@@ -11,6 +11,8 @@ export interface Event {
 function EventPage() {
   const { name } = useParams();
   const [searchedEvent, setEvent] = useState<Event | null>(null);
+  const [buyPopup, setBuyPopup] = useState(false);
+
   async function getEvent() {
     const response = await fetch(`http://localhost:8080/api/events/${name}`, {
       method: "GET",
@@ -25,6 +27,10 @@ function EventPage() {
     const json: Event = await response.json();
     console.log(json);
     return json;
+  }
+
+  function changePopUp() {
+    setBuyPopup(!buyPopup);
   }
 
   useEffect(() => {
@@ -50,10 +56,37 @@ function EventPage() {
               Verfügbare Tickets: {searchedEvent?.availabletickets}
             </p>
             <p className="mb-4 font-bold">Preis: {searchedEvent?.price}€</p>
-            <button className="rounded-xl bg-blue-500 p-1 hover:bg-blue-600 transition cursor-pointer">
+            <button
+              className="rounded-xl bg-blue-500 p-1 hover:bg-blue-600 transition cursor-pointer"
+              onClick={changePopUp}
+            >
               Tickets kaufen
             </button>
           </div>
+        )}
+        {buyPopup ? (
+          <div className="fixed inset z-50 flex justify-center items-center">
+            <div className="relative rounded-2xl bg-white text-center p-10 w-[28rem] max-w-[90%] h-[15rem] max-h-[90%]">
+              <button
+                className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-2xl font-bold"
+                onClick={changePopUp}
+              >
+                X
+              </button>
+              <h1 className="text-xl font-bold mb-4">Tickets kaufen</h1>
+              <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold">
+                Kaufen
+              </button>
+              <input
+                type="number"
+                className="rounded-xl bg-slate-200 w-10"
+                max={8}
+                min={0}
+              />
+            </div>
+          </div>
+        ) : (
+          <div></div>
         )}
       </div>
     </>
