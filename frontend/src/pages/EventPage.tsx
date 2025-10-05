@@ -12,6 +12,7 @@ function EventPage() {
   const { name } = useParams();
   const [searchedEvent, setEvent] = useState<Event | null>(null);
   const [buyPopup, setBuyPopup] = useState(false);
+  const [amount, setAmount] = useState("");
 
   async function getEvent() {
     const response = await fetch(`http://localhost:8080/api/events/${name}`, {
@@ -31,6 +32,29 @@ function EventPage() {
 
   function changePopUp() {
     setBuyPopup(!buyPopup);
+  }
+
+  async function buyTicket() {
+    //vllt try catch bauen
+    const response = await fetch(
+      `http://localhost:8080/api/events/${name}/buy`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user: "alice@example.com",
+          amount: amount,
+          moneypaid: Number(amount) * searchedEvent?.price,
+        }),
+      }
+    );
+    const data = response.json();
+    console.log(data);
+    if (!response.ok) {
+      throw new Error("Fehler beim Kaufen");
+    }
   }
 
   useEffect(() => {
@@ -74,15 +98,23 @@ function EventPage() {
                 X
               </button>
               <h1 className="text-xl font-bold mb-4">Tickets kaufen</h1>
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold">
+              <button
+                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold"
+                onClick={buyTicket}
+              >
                 Kaufen
               </button>
               <input
+                value={amount}
                 type="number"
                 className="rounded-xl bg-slate-200 w-10"
                 max={8}
+                onChange={(e) => setAmount(e.target.value)}
                 min={0}
               />
+              <p className="font-bold">
+                Preis: {Number(amount) * searchedEvent?.price}
+              </p>
             </div>
           </div>
         ) : (
