@@ -113,7 +113,7 @@ function EventPage() {
                 min={0}
               />
               <p className="font-bold">
-                Preis: {Number(amount) * searchedEvent?.price}
+                Preis: {Number(amount) * searchedEvent?.price}€
               </p>
             </div>
           </div>

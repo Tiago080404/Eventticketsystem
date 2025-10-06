@@ -6,6 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="3564c6a0-0295-4870-92c4-af7e2d751ef9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Controller/EventsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Controller/EventsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Repository/EventsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Repository/EventsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Service/EventsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Service/EventsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/LastChance.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/LastChance.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/EventPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/EventPage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -119,7 +124,9 @@
       <workItem from="1759582552159" duration="419000" />
       <workItem from="1759606721699" duration="618000" />
       <workItem from="1759656492821" duration="1523000" />
-      <workItem from="1759681898027" duration="1428000" />
+      <workItem from="1759681898027" duration="2316000" />
+      <workItem from="1759751642988" duration="309000" />
+      <workItem from="1759760961637" duration="3835000" />
     </task>
     <servers />
   </component>

@@ -48,4 +48,9 @@ public class EventsController {
         System.out.println(input);
         return eventsService.getEventsBySearch(input);
     }
+
+    @GetMapping("/lastchance")
+    public List<Events> getLastChanceEvents(){
+        return eventsService.getLastChanceEvents();
+    }
 }

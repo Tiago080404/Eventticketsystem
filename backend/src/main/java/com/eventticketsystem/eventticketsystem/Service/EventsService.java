@@ -52,4 +52,8 @@ public class EventsService {
         return eventsRepository.getEventsBySearch(input);
     }
 
+    public List<Events> getLastChanceEvents(){
+        return eventsRepository.getLastChanceEvents();
+    }
+
 }

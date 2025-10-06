@@ -11,4 +11,7 @@ import java.util.List;
 public interface EventsRepository extends JpaRepository<Events,String> {
     @Query(value="select * from events where events.name like %?1%",nativeQuery = true)
     List<Events> getEventsBySearch(String input);
+
+    @Query(value = "select * from events where events.availabletickets<100",nativeQuery = true)
+    List<Events> getLastChanceEvents();
 }

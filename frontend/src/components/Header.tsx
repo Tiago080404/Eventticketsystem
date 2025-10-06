@@ -8,7 +8,7 @@ type ChildProps = {
 export interface Events {
   name: string;
   date: string;
-  availableTickets: number;
+  availabletickets: number;
   price: number;
 }
 
@@ -48,7 +48,7 @@ function Header({ onInputChange, searchedEvents }: ChildProps) {
                 <Link to={`/event/${event.name}`} className="block">
                   <div className="font-semibold">{event.name}</div>
                   <div className="text-sm text-gray-600">
-                    {event.date} • {event.availableTickets} Tickets ab{" "}
+                    {event.date} • {event.availabletickets} Tickets ab{" "}
                     {event.price}€
                   </div>
                 </Link>
