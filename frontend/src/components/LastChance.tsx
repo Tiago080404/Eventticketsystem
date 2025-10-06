@@ -48,7 +48,7 @@ function LastChance() {
             {lastChanceEvents.map((ele) => (
               <div
                 key={ele.name}
-                className="bg-white rounded-2xl shadow p-6 text-center hover:shadow-lg transition cursor-pointer"
+                className="bg-white rounded-2xl shadow p-16 text-center hover:shadow-lg transition cursor-pointer"
               >
                 <div className="p-4">
                   <h3 className="text-lg font-bold text-black">{ele.name}</h3>

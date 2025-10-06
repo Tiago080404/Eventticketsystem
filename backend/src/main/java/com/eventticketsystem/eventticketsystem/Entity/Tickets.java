@@ -59,7 +59,7 @@ public class Tickets {
         return purchased_at;
     }
     public void setPurchased_at(LocalDateTime purchasedAt){
-        this.purchased_at = purchased_at;
+        this.purchased_at = purchasedAt;
     }
     public String getTicket_UUID(){
         return ticket_UUID;
