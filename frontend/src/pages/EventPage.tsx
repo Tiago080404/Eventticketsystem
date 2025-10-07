@@ -36,24 +36,29 @@ function EventPage() {
 
   async function buyTicket() {
     //vllt try catch bauen
-    const response = await fetch(
-      `http://localhost:8080/api/events/${name}/buy`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          user: "alice@example.com",
-          amount: amount,
-          moneypaid: Number(amount) * searchedEvent?.price,
-        }),
+
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/events/${name}/buy`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            user: "alice@example.com",
+            amount: amount,
+            moneypaid: Number(amount) * searchedEvent?.price,
+          }),
+        }
+      );
+      const data = response.json();
+      console.log(data);
+      if (!response.ok) {
+        throw new Error("Fehler beim Kaufen");
       }
-    );
-    const data = response.json();
-    console.log(data);
-    if (!response.ok) {
-      throw new Error("Fehler beim Kaufen");
+    } catch (error) {
+      console.log("Error occured when buying tickets", error);
     }
   }
 

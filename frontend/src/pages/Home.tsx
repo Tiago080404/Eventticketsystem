@@ -2,16 +2,18 @@ import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Categories from "../components/Categories";
 import LastChance from "../components/LastChance";
+import Login from "../components/Login";
 
 export interface Events {
   name: string;
   date: string;
-  availableTickets: number;
+  availabletickets: number;
   price: number;
 }
 function Home() {
   const [text, setText] = useState("");
   const [events, setEvents] = useState<Events[]>([]);
+  const [loggedIn,setLoggedIn] = useState(false)
 
   const handleInputChange = (value: string) => {
     if (value.length >= 2) {
@@ -21,6 +23,10 @@ function Home() {
       setText("");
     }
   };
+
+  const handleLoginChange =()=>{
+    setLoggedIn(true)
+  }
 
   async function getSearchEvents(): Promise<Events[]> {
     console.log("searching...");
@@ -59,6 +65,8 @@ function Home() {
   }, [text]);
   return (
     <>
+    {loggedIn ? (
+
       <div className="w-full min-h-screen bg-gray-50 text-gray-900 bg-gradient-to-r from-purple-600 via-pink-500 to-red-500">
         <Header
           onInputChange={handleInputChange}
@@ -69,6 +77,9 @@ function Home() {
 
         <LastChance></LastChance>
       </div>
+    ):(
+      <Login onLoginChange={handleLoginChange}></Login>
+    )}
     </>
   );
 }

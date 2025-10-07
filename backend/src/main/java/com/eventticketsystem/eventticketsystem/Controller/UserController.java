@@ -4,6 +4,8 @@ import com.eventticketsystem.eventticketsystem.Entity.AuthRequest;
 import com.eventticketsystem.eventticketsystem.Entity.User;
 import com.eventticketsystem.eventticketsystem.Service.JwtService;
 import com.eventticketsystem.eventticketsystem.Service.UserService;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,12 +55,22 @@ public class UserController {
 
                 Map<String, Object> userdata = new HashMap<>();
                 userdata.put("username",user.getEmail());
-                userdata.put("role",user.getPassword());
+                userdata.put("role",user.getRole());
 
                 Map<String,Object> response = new HashMap<>();
                 response.put("token",token);
                 response.put("user",userdata);
-                return ResponseEntity.ok(response);
+
+                ResponseCookie jwtCookie = ResponseCookie.from("jwt",token)
+                        .httpOnly(true)
+                        .secure(false)
+                        .path("/")
+                        .sameSite("Strict")
+                        .maxAge(Duration.ofHours(2))
+                        .build();
+
+
+                return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, jwtCookie.toString()).body(response);
 
             }else {
                 throw new UsernameNotFoundException("Invalid user request!"); //hier vllt eine responseentity auch
