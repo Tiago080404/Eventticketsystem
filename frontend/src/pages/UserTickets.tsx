@@ -54,10 +54,10 @@ function UserTickets() {
 
   return (
     <>
-      <div className="w-full min-h-screen bg-gray-50 p-6">
-        <h2 className="text-3xl font-bold mb-6">🎟️ Deine Tickets</h2>
+      <div className="w-full min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black">
+        <h2 className="text-3xl font-bold mb-6 text-white">🎟️ Deine Tickets</h2>
         {tickets.length === 0 ? (
-          <p className="text-gray-500">Du hast noch keine Tickets</p>
+          <p className="text-white">Du hast noch keine Tickets</p>
         ) : (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {tickets.map((ticket, index) => (

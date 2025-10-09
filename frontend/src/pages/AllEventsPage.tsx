@@ -72,22 +72,26 @@ function AllEventsPage() {
   return (
     <>
       {/* justify center flex */}
-      <div className="absolute top-0 left-25 right-25">
-        <input
-          type="text"
-          placeholder="Event suchen"
-          className="rounded-xl p-2 text-black border-solid border-blue-400 border-4"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-        />
-        <button>Search</button>
-      </div>
-      <section className="py-12 px-6 max-w-6xl mx-auto">
-        <h2 className="text-2xl font-bold mb-6">Alle Konzerte</h2>
-        <div className="flex justify-center items-center flex-wrap">
-          {eventsList}
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black">
+        <div className="flex justify-center items-center">
+          <input
+            type="text"
+            placeholder="Event suchen"
+            className="rounded-xl p-3 w-64 m-3 text-gray-900 font-medium shadow-inner border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+          />
+          <button className="px-6 py-3 bg-yellow-500 text-gray-900 font-semibold rounded-xl shadow hover:bg-yellow-400 transition">
+            Search
+          </button>
         </div>
-      </section>
+        <section className="py-12 px-6 max-w-6xl mx-auto">
+          <h2 className="text-2xl font-bold mb-6 text-white">Alle Konzerte</h2>
+          <div className="flex justify-center items-center flex-wrap">
+            {eventsList}
+          </div>
+        </section>
+      </div>
     </>
   );
 }

@@ -6,14 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="3564c6a0-0295-4870-92c4-af7e2d751ef9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Service/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Service/JwtService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Header.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/LastChance.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/LastChance.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Home.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/AllEventsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/AllEventsPage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,6 +129,8 @@
       <workItem from="1759934709788" duration="1412000" />
       <workItem from="1759995264329" duration="998000" />
       <workItem from="1760010228402" duration="2928000" />
+      <workItem from="1760019367370" duration="673000" />
+      <workItem from="1760028054717" duration="668000" />
     </task>
     <servers />
   </component>

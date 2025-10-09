@@ -45,7 +45,7 @@ function Header({ onInputChange, searchedEvents }: ChildProps) {
             onInputChange(e.target.value);
           }}
         />
-        <button className="px-6 py-3 bg-yellow-500 text-gray-900 font-semibold rounded-xl shadow hover:bg-yellow-400 transition">
+<button className="px-6 py-3 bg-yellow-500 text-gray-900 font-semibold rounded-xl shadow hover:bg-yellow-400 transition">
           Search
         </button>
 

@@ -60,7 +60,7 @@ function LastChance() {
                   </p>
                   <Link
                     to={`/event/${ele.name}`}
-                    className="px-4 py-2 rounded-xl bg-purple-600 mt-3 p-1 inline-block text-white hover:bg-purple-700 transition"
+                    className="px-4 py-2 rounded-xl bg-yellow-500 text-gray-900 mt-3 p-1 inline-block hover:bg-yellow-400 transition"
                   >
                     Tickets
                   </Link>

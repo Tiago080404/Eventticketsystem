@@ -35,8 +35,6 @@ function EventPage() {
   }
 
   async function buyTicket() {
-    //vllt try catch bauen
-
     try {
       const response = await fetch(
         `http://localhost:8080/api/events/${name}/buy`,
