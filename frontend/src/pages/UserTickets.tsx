@@ -16,19 +16,21 @@ interface User {
   password: string;
   role: string;
 }
-function UserTickets() {
+function UserTickets({useremail}:any) {
   const [tickets, setTickets] = useState<Tickets[]>([]);
   const [qrCode, setQrCode] = useState(false);
   const [activeTicket, setActiveTicket] = useState<string | null>(null);
 
   async function getUserTickets(): Promise<Tickets[]> {
+    console.log(useremail)
     const response = await fetch(
-      "http://localhost:8080/api/tickets/user/alice@example.com",
+      `http://localhost:8080/api/tickets/user/${useremail}`,
       {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
+        //credentials:"include"
       }
     );
     if (!response.ok) {

@@ -20,8 +20,10 @@ public class TicketsController {
 
     @GetMapping("/user/{email}")
     public List<Tickets> getTicketsByUsername(@PathVariable String email){
+        System.out.println("getting tickets of user...");
         List<Tickets> ticketsss =ticketService.getTicketsByUserEmail(email);
         //System.out.println(ticketsss);
+        System.out.println(ticketsss);
         return ticketsss;
     }
 //neue route machen mit dto ohne user feldern für alle tickets bvon einem user bekommen

@@ -30,6 +30,7 @@ function App() {
       }
       const data = await response.json();
       setLoggedIn(true);
+      console.log(data)
       setUsername(data.email);
     } catch (error) {
       console.error("Fehler bei checkAuth", error);
@@ -80,7 +81,7 @@ function App() {
             path="/tickets"
             element={
               <ProtectedRoutes loggedIn={loggedIn}>
-                <UserTickets />
+                <UserTickets useremail={username} />
               </ProtectedRoutes>
             }
           ></Route>

@@ -50,7 +50,7 @@ function EventPage() {
           }),
         }
       );
-      const data = response.json();
+      const data = await response.json();
       console.log(data);
       if (!response.ok) {
         throw new Error("Fehler beim Kaufen");
@@ -70,7 +70,7 @@ function EventPage() {
 
   return (
     <>
-      <div className="w-full min-h-screen bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex justify-center items-center p-6">
+      <div className="w-full min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black flex justify-center items-center p-6">
         {!searchedEvent ? (
           <div className="text-gray-500 text-lg">Lade Eventdaten</div>
         ) : (
@@ -84,7 +84,7 @@ function EventPage() {
             </p>
             <p className="mb-4 font-bold">Preis: {searchedEvent?.price}€</p>
             <button
-              className="rounded-xl bg-blue-500 p-1 hover:bg-blue-600 transition cursor-pointer"
+              className="px-6 py-3 bg-yellow-500 text-gray-900 font-semibold rounded-xl shadow hover:bg-yellow-400 transition"
               onClick={changePopUp}
             >
               Tickets kaufen
@@ -102,7 +102,7 @@ function EventPage() {
               </button>
               <h1 className="text-xl font-bold mb-4">Tickets kaufen</h1>
               <button
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold"
+                className="px-6 py-3 bg-yellow-500 text-gray-900 font-semibold rounded-xl shadow hover:bg-yellow-400 transition"
                 onClick={buyTicket}
               >
                 Kaufen
@@ -110,7 +110,7 @@ function EventPage() {
               <input
                 value={amount}
                 type="number"
-                className="rounded-xl bg-slate-200 w-10"
+                className="rounded-xl bg-slate-200 w-16 p-3 py-3"
                 max={8}
                 onChange={(e) => setAmount(e.target.value)}
                 min={0}
