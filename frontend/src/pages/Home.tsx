@@ -10,10 +10,16 @@ export interface Events {
   availabletickets: number;
   price: number;
 }
-function Home() {
+type authFuncProp = {
+  checkAuth: () => void;
+  checkLoggedIn: boolean;
+};
+//hier childProp reintun bei app.tsx
+function Home({ checkAuth, checkLoggedIn }: authFuncProp) {
   const [text, setText] = useState("");
   const [events, setEvents] = useState<Events[]>([]);
-  const [loggedIn,setLoggedIn] = useState(false)
+  const [loggedIn, setLoggedIn] = useState(checkLoggedIn);
+  const [username, setUsername] = useState("");
 
   const handleInputChange = (value: string) => {
     if (value.length >= 2) {
@@ -24,12 +30,13 @@ function Home() {
     }
   };
 
-  const handleLoginChange =()=>{
-    setLoggedIn(true)
-  }
+  const handleLoginChange = (value: string) => {
+    setLoggedIn(true);
+    setUsername(value);
+    checkAuth();
+  };
 
   async function getSearchEvents(): Promise<Events[]> {
-    console.log("searching...");
     const response = await fetch(
       `http://localhost:8080/api/events/search/${text}`,
       {
@@ -65,21 +72,21 @@ function Home() {
   }, [text]);
   return (
     <>
-    {loggedIn ? (
+      {loggedIn || checkLoggedIn ? (
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
+          <h1>{username}</h1>
+          <Header
+            onInputChange={handleInputChange}
+            searchedEvents={events}
+          ></Header>
 
-      <div className="w-full min-h-screen bg-gray-50 text-gray-900 bg-gradient-to-r from-purple-600 via-pink-500 to-red-500">
-        <Header
-          onInputChange={handleInputChange}
-          searchedEvents={events}
-        ></Header>
+          <Categories></Categories>
 
-        <Categories></Categories>
-
-        <LastChance></LastChance>
-      </div>
-    ):(
-      <Login onLoginChange={handleLoginChange}></Login>
-    )}
+          <LastChance></LastChance>
+        </div>
+      ) : (
+        <Login onLoginChange={handleLoginChange}></Login>
+      )}
     </>
   );
 }

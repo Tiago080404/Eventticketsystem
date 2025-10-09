@@ -1,8 +1,8 @@
 import { useState } from "react";
 type ChildProps = {
-  onLoginChange: () => void;
+  onLoginChange: (value: string) => void;
 };
-function Login({onLoginChange}: ChildProps) {
+function Login({ onLoginChange }: ChildProps) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -13,7 +13,7 @@ function Login({onLoginChange}: ChildProps) {
         headers: {
           "Content-Type": "application/json",
         },
-        credentials:"include",
+        credentials: "include",
         body: JSON.stringify({
           email: username,
           password: password,
@@ -24,8 +24,7 @@ function Login({onLoginChange}: ChildProps) {
       }
 
       const data = await response.json();
-      console.log(data);
-      onLoginChange();
+      onLoginChange(data.user.username);
     } catch (error) {
       console.log(error);
     }
@@ -33,27 +32,32 @@ function Login({onLoginChange}: ChildProps) {
 
   return (
     <>
-      <div className="w-full min-h-screen bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex justify-center items-center p-6">
-        <div className="cursor-pointer shadow-lg bg-slate-300 p-60 rounded-2xl">
-          <div className="flex flex-col gap-4">
-            <h1 className="text-2xl text-center font-bold mb-4">Login</h1>
+      <div className="w-full min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black flex justify-center items-center p-6">
+        <div className="cursor-pointer shadow-2xl bg-gray-900/80 p-12 rounded-2xl border border-gray-700 backdrop-blur-md">
+          <div className="flex flex-col gap-6 text-gray-200">
+            <h1 className="text-3xl text-center font-bold mb-4 text-white tracking-wide">
+              Login
+            </h1>
+
             <input
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               type="text"
-              placeholder="username"
-              className="p-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              placeholder="Username"
+              className="p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-gray-400 text-gray-100"
             />
+
             <input
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              type="text"
-              placeholder="password"
-              className="p-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              type="password"
+              placeholder="Password"
+              className="p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-gray-400 text-gray-100"
             />
+
             <button
               onClick={login}
-              className="bg-indigo-600 text-white font-semibold py-2 rounded-md hover:bg-indigo-700 transition"
+              className="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-md transition transform hover:scale-105 shadow-lg hover:shadow-indigo-500/30"
             >
               Login
             </button>

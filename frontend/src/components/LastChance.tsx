@@ -40,15 +40,14 @@ function LastChance() {
   console.log(lastChanceEvents);
   return (
     <>
-      <section className="relative h-[60vh] bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 flex items-center justify-center text-center text-white">
+      <section className="relative h-[60vh] bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center text-center text-white">
         <div className="relative max-w-6xl mx-auto">
-
           <h1 className="text-2xl font-bold mb-6 text-white">Letzte Chance</h1>
           <div className="grid grid-flow-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {lastChanceEvents.map((ele) => (
               <div
                 key={ele.name}
-                className="bg-white rounded-2xl shadow p-16 text-center hover:shadow-lg transition cursor-pointer"
+                className="bg-white text-black rounded-2xl shadow p-6 hover:shadow-xl transition flex flex-col justify-between"
               >
                 <div className="p-4">
                   <h3 className="text-lg font-bold text-black">{ele.name}</h3>

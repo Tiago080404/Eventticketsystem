@@ -5,16 +5,14 @@ import com.eventticketsystem.eventticketsystem.Entity.User;
 import com.eventticketsystem.eventticketsystem.Service.JwtService;
 import com.eventticketsystem.eventticketsystem.Service.UserService;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.Duration;
 import java.util.HashMap;
@@ -78,5 +76,22 @@ public class UserController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @GetMapping("/check")
+    public ResponseEntity<?> getCurrentUser(@CookieValue(name = "jwt" , required = false) String token){
+        if (token == null || !jwtService.isValid(token)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(Map.of("error", "Not logged in"));
+        }
+
+        String email = jwtService.extractUsername(token);
+        User user = userService.getUserByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
+        return ResponseEntity.ok(Map.of(
+                "email", user.getEmail(),
+                "role", user.getRole()
+        ));
     }
 }
