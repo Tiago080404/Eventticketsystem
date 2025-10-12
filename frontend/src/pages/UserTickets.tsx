@@ -16,13 +16,14 @@ interface User {
   password: string;
   role: string;
 }
-function UserTickets({useremail}:any) {
+function UserTickets({ useremail }: any) {
   const [tickets, setTickets] = useState<Tickets[]>([]);
   const [qrCode, setQrCode] = useState(false);
   const [activeTicket, setActiveTicket] = useState<string | null>(null);
+  const [transferTicket, setTransferTicket] = useState(false);
 
   async function getUserTickets(): Promise<Tickets[]> {
-    console.log(useremail)
+    console.log(useremail);
     const response = await fetch(
       `http://localhost:8080/api/tickets/user/${useremail}`,
       {
@@ -99,8 +100,33 @@ function UserTickets({useremail}:any) {
                   >
                     See TicketCode
                   </button>
+                  <button
+                    className="bg-blue-400 rounded-xl p-1 text-black hover:scale-105 transform transition cursor-pointer"
+                    onClick={() => {
+                      setTransferTicket(!transferTicket);
+                      setActiveTicket(ticket.ticket_UUID);
+                    }}
+                  >
+                    Transfer
+                  </button>
                 </div>
-
+                {transferTicket && activeTicket === ticket.ticket_UUID ? (
+                  <div className="fixed inset-0 bg-black rounded-xl z-50 bg-opacity-50 flex justify-center items-center">
+                    <div className="p-24 w-80 bg-black h-50 flex justify-end items-center flex-col">
+                      <p className="text-yellow-400">
+                        Want to transfer your Ticket
+                      </p>
+                      <input
+                        type="text"
+                        placeholder="Enter Name"
+                        className="rounded-xl p-3 w-64 m-3 text-gray-900 font-medium shadow-inner border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                      />
+                      <button className="px-6 py-3 bg-yellow-500 text-gray-900 font-semibold rounded-xl shadow hover:bg-yellow-400 transition">
+                        Transfer
+                      </button>
+                    </div>
+                  </div>
+                ) : null}
                 {activeTicket === ticket.ticket_UUID && qrCode ? (
                   <div className="mt-4 flex justify-center">
                     <QRCodeSVG
