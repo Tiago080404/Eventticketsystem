@@ -2,6 +2,7 @@ package com.eventticketsystem.eventticketsystem.Service;
 
 import com.eventticketsystem.eventticketsystem.Entity.Events;
 import com.eventticketsystem.eventticketsystem.Entity.Tickets;
+import com.eventticketsystem.eventticketsystem.Entity.TransferTicket;
 import com.eventticketsystem.eventticketsystem.Entity.User;
 import com.eventticketsystem.eventticketsystem.Repository.EventsRepository;
 import com.eventticketsystem.eventticketsystem.Repository.TicketRepository;
@@ -85,7 +86,7 @@ public class TicketService {
         return boughtTicket;
     }
 
-    @Transactional
+    /*@Transactional
     public ResponseEntity<?> ticketTransfer(TicketTransferRequest ticketTransferRequest){
 
         try{
@@ -125,6 +126,42 @@ public class TicketService {
             return ResponseEntity.ok(response);
 
         } catch (RuntimeException e) {
+            Map<String,String> errorResponse = new HashMap<>();
+            errorResponse.put("error",e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+        }
+    }*/
+
+    @Transactional   //erstmal vllt alles einzelnt und dann schauen wie man das dynamisch machen kann
+    //weil dto hat felder die nicht immer beoetigt werde
+    public ResponseEntity<?> ticketTransfer(TicketTransferRequest ticketTransferRequest){
+        try{
+            Tickets tickets = ticketRepository.findById(ticketTransferRequest.getTicketId())
+                    .orElseThrow(()-> new RuntimeException("Ticket not found"));
+
+            User userEnity = userRepository.findByEmail(ticketTransferRequest.getNewUserEmail())
+                    .orElseThrow(()-> new RuntimeException("User to get the Ticket not found!"));
+
+            //alles in die entity danach saven repo
+
+            TransferTicket transferTicket = new TransferTicket();
+            transferTicket.setTransferStatus();
+            transferTicket.setFromUser();
+            transferTicket.setToUser();
+
+
+
+            ticketRepository.save(transferTicket):
+
+
+            Map<String,Object> response = new HashMap<>();
+            response.put("message","Ticket got transfered!");
+            response.put("ticketId",tickets.getTicket_id());
+            response.put("newOwner",userEnity.getEmail());
+
+            return ResponseEntity.ok(response);
+
+        }catch(RuntimeException e){
             Map<String,String> errorResponse = new HashMap<>();
             errorResponse.put("error",e.getMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
