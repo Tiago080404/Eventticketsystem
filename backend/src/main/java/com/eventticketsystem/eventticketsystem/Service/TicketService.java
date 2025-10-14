@@ -1,11 +1,9 @@
 package com.eventticketsystem.eventticketsystem.Service;
 
-import com.eventticketsystem.eventticketsystem.Entity.Events;
-import com.eventticketsystem.eventticketsystem.Entity.Tickets;
-import com.eventticketsystem.eventticketsystem.Entity.TransferTicket;
-import com.eventticketsystem.eventticketsystem.Entity.User;
+import com.eventticketsystem.eventticketsystem.Entity.*;
 import com.eventticketsystem.eventticketsystem.Repository.EventsRepository;
 import com.eventticketsystem.eventticketsystem.Repository.TicketRepository;
+import com.eventticketsystem.eventticketsystem.Repository.TicketTransferRepository;
 import com.eventticketsystem.eventticketsystem.Repository.UserRepository;
 import com.eventticketsystem.eventticketsystem.dto.BuyTicketRequest;
 import com.eventticketsystem.eventticketsystem.dto.TicketTransferRequest;
@@ -18,10 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.ByteArrayOutputStream;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class TicketService {
@@ -29,12 +24,14 @@ public class TicketService {
     private final EventsRepository eventsRepository;
     private final UserRepository userRepository;
     private final EmailService emailService;
+    private final TicketTransferRepository ticketTransferRepository;
 
-    public TicketService(TicketRepository ticketRepository,EventsRepository eventsRepository,UserRepository userRepository,EmailService emailService) {
+    public TicketService(TicketRepository ticketRepository,EventsRepository eventsRepository,UserRepository userRepository,EmailService emailService,TicketTransferRepository ticketTransferRepository) {
         this.ticketRepository = ticketRepository;
         this.eventsRepository = eventsRepository;
         this.userRepository = userRepository;
         this.emailService = emailService;
+        this.ticketTransferRepository = ticketTransferRepository;
     }
 
     public List<Tickets> getTicketsByUserEmail(String email) {
@@ -139,25 +136,28 @@ public class TicketService {
             Tickets tickets = ticketRepository.findById(ticketTransferRequest.getTicketId())
                     .orElseThrow(()-> new RuntimeException("Ticket not found"));
 
-            User userEnity = userRepository.findByEmail(ticketTransferRequest.getNewUserEmail())
+            User oldUser = userRepository.findByEmail(ticketTransferRequest.getOldUserEmail())
+                    .orElseThrow(()-> new RuntimeException("User who wants to transfer that ticket not found!"));
+
+            User newUser = userRepository.findByEmail(ticketTransferRequest.getNewUserEmail())
                     .orElseThrow(()-> new RuntimeException("User to get the Ticket not found!"));
 
+
             //alles in die entity danach saven repo
-
+            //vlllt mit einem if das man das dann nicht setzt das feld olduser falls auf success oder so gestellt wird
             TransferTicket transferTicket = new TransferTicket();
-            transferTicket.setTransferStatus();
-            transferTicket.setFromUser();
-            transferTicket.setToUser();
+            transferTicket.setTransferStatus(TransferStatus.Pending);
+            transferTicket.setFromUser(oldUser);
+            transferTicket.setToUser(newUser);
+            transferTicket.setTransferDate(LocalDateTime.now());
+            transferTicket.setTicketId(ticketTransferRequest.getTicketId());
 
-
-
-            ticketRepository.save(transferTicket):
-
+            ticketTransferRepository.save(transferTicket);
 
             Map<String,Object> response = new HashMap<>();
             response.put("message","Ticket got transfered!");
             response.put("ticketId",tickets.getTicket_id());
-            response.put("newOwner",userEnity.getEmail());
+            response.put("newOwner",newUser.getEmail());
 
             return ResponseEntity.ok(response);
 
@@ -167,4 +167,6 @@ public class TicketService {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
         }
     }
+
+    //noch eine reply function bauen!!!!
 }

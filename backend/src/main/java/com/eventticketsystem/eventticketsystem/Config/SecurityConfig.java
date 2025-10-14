@@ -39,7 +39,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http.csrf(csrf->csrf.disable())
                 .cors((cors)->cors.configurationSource(corsConfigurationSource()))
-                .authorizeHttpRequests((authorize)->authorize.requestMatchers("/api/auth/login","api/events/**","api/events","/api/tickets/user/**","/api/auth/check")
+                .authorizeHttpRequests((authorize)->authorize.requestMatchers("/api/auth/login","api/events/**","api/events","/api/tickets/user/**","/api/auth/check","/api/tickets/transfer")
                         .permitAll()
                         //.requestMatchers("/api/events/create").hasAnyRole("ORGANIZER")
                         .anyRequest()

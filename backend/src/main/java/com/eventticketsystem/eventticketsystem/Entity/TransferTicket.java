@@ -2,6 +2,8 @@ package com.eventticketsystem.eventticketsystem.Entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
 
@@ -11,21 +13,29 @@ public class TransferTicket {
 
     @Id
     @Column(nullable = false,unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long transferId;
 
     @ManyToOne
-    @JoinColumn(name = "fromUser", nullable = false)
+    @JoinColumn(name = "fromuser", nullable = false)
     private User fromUser;
 
     @ManyToOne
-    @JoinColumn(name = "toUser")
+    @JoinColumn(name = "touser")
     private User toUser;
 
-    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "transferdate",columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDateTime transferDate;
 
-    @Column(nullable = false)
+
+    @Column(name = "ticketid",nullable = false)
+    private Long ticketId;
+
+    //with columndefinition it works should be a enum
+    @Column(name = "transferstatus", nullable = false, columnDefinition = "transferstatus")
+    @Enumerated(EnumType.STRING)
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM) // to map to the native PG enum type
     private TransferStatus transferStatus;
 
     public long getTransferId() {
@@ -57,5 +67,13 @@ public class TransferTicket {
     }
     public void setToUser(User toUser) {
         this.toUser = toUser;
+    }
+
+    public void setTicketId(Long ticketId) {
+        this.ticketId = ticketId;
+    }
+
+    public Long getTicketId() {
+        return ticketId;
     }
 }
