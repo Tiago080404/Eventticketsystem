@@ -131,19 +131,17 @@ public class TicketService {
         }
     }*/
 
-    @Transactional   //erstmal vllt alles einzelnt und dann schauen wie man das dynamisch machen kann
+       //erstmal vllt alles einzelnt und dann schauen wie man das dynamisch machen kann
     //weil dto hat felder die nicht immer beoetigt werde
+    @Transactional
     public ResponseEntity<?> ticketTransfer(TicketTransferRequest ticketTransferRequest) {
         try {
             Tickets tickets = ticketRepository.findById(ticketTransferRequest.getTicketId())
                     .orElseThrow(() -> new RuntimeException("Ticket not found"));
-
             User oldUser = userRepository.findByEmail(ticketTransferRequest.getOldUserEmail())
                     .orElseThrow(() -> new RuntimeException("User who wants to transfer that ticket not found!"));
-
             User newUser = userRepository.findByEmail(ticketTransferRequest.getNewUserEmail())
                     .orElseThrow(() -> new RuntimeException("User to get the Ticket not found!"));
-
 
             //alles in die entity danach saven repo
             //vlllt mit einem if das man das dann nicht setzt das feld olduser falls auf success oder so gestellt wird

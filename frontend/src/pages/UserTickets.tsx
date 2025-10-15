@@ -3,7 +3,7 @@ import type { Events } from "./AllEventsPage";
 import { QRCodeSVG } from "qrcode.react";
 
 interface Tickets {
-  ticketId: number;
+  ticket_id: number;
   events: Events;
   user: User;
   quantity: number;
@@ -21,9 +21,11 @@ function UserTickets({ useremail }: any) {
   const [qrCode, setQrCode] = useState(false);
   const [activeTicket, setActiveTicket] = useState<string | null>(null);
   const [transferTicket, setTransferTicket] = useState(false);
-
+  const [transferUser, setTransferUser] = useState("");
+  const [activeTransferTicket, setActiveTransferTicket] = useState<
+    number | null
+  >(null);
   async function getUserTickets(): Promise<Tickets[]> {
-    console.log(useremail);
     const response = await fetch(
       `http://localhost:8080/api/tickets/user/${useremail}`,
       {
@@ -39,8 +41,28 @@ function UserTickets({ useremail }: any) {
     }
 
     const json: Tickets[] = await response.json();
-    console.log(json);
     return json;
+  }
+  async function transferRequest() {
+    console.log(activeTransferTicket);
+    const response = await fetch("http://localhost:8080/api/tickets/transfer", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      credentials: "include",
+      body: JSON.stringify({
+        ticketId: activeTransferTicket,
+        oldUserEmail: useremail,
+        newUserEmail: transferUser,
+      }),
+    });
+    if (!response.ok) {
+      throw new Error("Fehler beim Laden");
+    }
+    const data = await response.json();
+    console.log(data);
   }
 
   useEffect(() => {
@@ -105,6 +127,7 @@ function UserTickets({ useremail }: any) {
                     onClick={() => {
                       setTransferTicket(!transferTicket);
                       setActiveTicket(ticket.ticket_UUID);
+                      setActiveTransferTicket(ticket.ticket_id);
                     }}
                   >
                     Transfer
@@ -117,11 +140,16 @@ function UserTickets({ useremail }: any) {
                         Want to transfer your Ticket
                       </p>
                       <input
+                        value={transferUser}
+                        onChange={(e) => setTransferUser(e.target.value)}
                         type="text"
                         placeholder="Enter Name"
                         className="rounded-xl p-3 w-64 m-3 text-gray-900 font-medium shadow-inner border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400"
                       />
-                      <button className="px-6 py-3 bg-yellow-500 text-gray-900 font-semibold rounded-xl shadow hover:bg-yellow-400 transition">
+                      <button
+                        className="px-6 py-3 bg-yellow-500 text-gray-900 font-semibold rounded-xl shadow hover:bg-yellow-400 transition"
+                        onClick={transferRequest}
+                      >
                         Transfer
                       </button>
                     </div>

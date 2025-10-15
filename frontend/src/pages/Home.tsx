@@ -13,13 +13,14 @@ export interface Events {
 type authFuncProp = {
   checkAuth: () => void;
   checkLoggedIn: boolean;
+  username: string;
 };
 //hier childProp reintun bei app.tsx
-function Home({ checkAuth, checkLoggedIn }: authFuncProp) {
+function Home({ checkAuth, checkLoggedIn,username }: authFuncProp) {
   const [text, setText] = useState("");
   const [events, setEvents] = useState<Events[]>([]);
   const [loggedIn, setLoggedIn] = useState(checkLoggedIn);
-  const [username, setUsername] = useState("");
+//  const [username, setUsername] = useState("");
 
   const handleInputChange = (value: string) => {
     if (value.length >= 2) {
@@ -32,7 +33,7 @@ function Home({ checkAuth, checkLoggedIn }: authFuncProp) {
 
   const handleLoginChange = (value: string) => {
     setLoggedIn(true);
-    setUsername(value);
+    //setUsername(value);
     checkAuth();
   };
 

@@ -57,7 +57,7 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Home checkAuth={checkAuth} checkLoggedIn={loggedIn} />}
+            element={<Home checkAuth={checkAuth} checkLoggedIn={loggedIn} username={username} />}
           />
           <Route path="/profile" element={<Profile />} />
           <Route
