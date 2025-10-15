@@ -1,7 +1,9 @@
 package com.eventticketsystem.eventticketsystem.Controller;
 
 import com.eventticketsystem.eventticketsystem.Entity.Tickets;
+import com.eventticketsystem.eventticketsystem.Repository.TicketRepository;
 import com.eventticketsystem.eventticketsystem.Service.TicketService;
+import com.eventticketsystem.eventticketsystem.dto.TicketTransferReply;
 import com.eventticketsystem.eventticketsystem.dto.TicketTransferRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +15,11 @@ import java.util.List;
 public class TicketsController {
 
     private final TicketService ticketService;
+    private final TicketRepository ticketRepository;
 
-    public TicketsController(TicketService ticketService){
+    public TicketsController(TicketService ticketService, TicketRepository ticketRepository){
         this.ticketService=ticketService;
+        this.ticketRepository = ticketRepository;
     }
 
     @GetMapping("/user/{email}")
@@ -30,5 +34,11 @@ public class TicketsController {
     @PostMapping("/transfer")
     public ResponseEntity<?> transferTickets(@RequestBody TicketTransferRequest ticketTransferRequest){
         return ticketService.ticketTransfer(ticketTransferRequest);
+    }
+
+    @PostMapping("/transfer/response")
+    public ResponseEntity<?>replyTransferTickets(@RequestBody TicketTransferReply ticketTransferReply){
+        System.out.println(ticketTransferReply);
+        return ticketService.replyTicketTransfer(ticketTransferReply);
     }
 }
