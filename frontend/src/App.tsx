@@ -7,6 +7,7 @@ import AllEventsPage from "./pages/AllEventsPage";
 import UserTickets from "./pages/UserTickets";
 import { useEffect, useState } from "react";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
+import TransferPage from "./pages/TransferPage";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -30,7 +31,7 @@ function App() {
       }
       const data = await response.json();
       setLoggedIn(true);
-      console.log(data)
+      console.log(data);
       setUsername(data.email);
     } catch (error) {
       console.error("Fehler bei checkAuth", error);
@@ -44,7 +45,8 @@ function App() {
   useEffect(() => {
     checkAuth();
   }, []);
-  if (!authChecked) {//dann wird das andere erst gar nicht gerendert(die routes)
+  if (!authChecked) {
+    //dann wird das andere erst gar nicht gerendert(die routes)
     return (
       <div className="text-white text-center mt-10">
         Checking authentication...
@@ -57,7 +59,13 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Home checkAuth={checkAuth} checkLoggedIn={loggedIn} username={username} />}
+            element={
+              <Home
+                checkAuth={checkAuth}
+                checkLoggedIn={loggedIn}
+                username={username}
+              />
+            }
           />
           <Route path="/profile" element={<Profile />} />
           <Route
@@ -82,6 +90,14 @@ function App() {
             element={
               <ProtectedRoutes loggedIn={loggedIn}>
                 <UserTickets useremail={username} />
+              </ProtectedRoutes>
+            }
+          ></Route>
+          <Route
+            path="/transfer"
+            element={
+              <ProtectedRoutes loggedIn={loggedIn}>
+                <TransferPage username={username}></TransferPage>
               </ProtectedRoutes>
             }
           ></Route>

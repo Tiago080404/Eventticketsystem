@@ -18,6 +18,13 @@ function Header({ onInputChange, searchedEvents }: ChildProps) {
     <section className="relative h-[60vh] bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center text-center text-white">
       <div className="absolute top-0 right-0 flex p-6 justify-end gap-6">
         <Link
+          to="/transfer"
+          className="hover:text-yellow-400 transition-colors font-medium"
+        >
+          Transfer notification
+        </Link>
+
+        <Link
           to="/tickets"
           className="hover:text-yellow-400 transition-colors font-medium"
         >
@@ -45,7 +52,7 @@ function Header({ onInputChange, searchedEvents }: ChildProps) {
             onInputChange(e.target.value);
           }}
         />
-<button className="px-6 py-3 bg-yellow-500 text-gray-900 font-semibold rounded-xl shadow hover:bg-yellow-400 transition">
+        <button className="px-6 py-3 bg-yellow-500 text-gray-900 font-semibold rounded-xl shadow hover:bg-yellow-400 transition">
           Search
         </button>
 
