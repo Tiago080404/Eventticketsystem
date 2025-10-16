@@ -41,4 +41,9 @@ public class TicketsController {
         System.out.println(ticketTransferReply);
         return ticketService.replyTicketTransfer(ticketTransferReply);
     }
+
+    @GetMapping("/transfer/notification/{email}")
+    public ResponseEntity<?>getTransferNotification(@PathVariable String email){
+        return ticketService.transferNotification(email);
+    }
 }

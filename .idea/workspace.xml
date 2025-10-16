@@ -7,12 +7,11 @@
     <list default="true" id="3564c6a0-0295-4870-92c4-af7e2d751ef9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Filter/JwtAuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Filter/JwtAuthFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Service/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Service/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Controller/TicketsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Controller/TicketsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Repository/TicketTransferRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Repository/TicketTransferRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Service/TicketService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Service/TicketService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Home.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/UserTickets.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/UserTickets.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Header.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +142,8 @@
       <workItem from="1760447626361" duration="6199000" />
       <workItem from="1760524465282" duration="5851000" />
       <workItem from="1760532156470" duration="6494000" />
-      <workItem from="1760555130138" duration="3985000" />
+      <workItem from="1760555130138" duration="4056000" />
+      <workItem from="1760602083954" duration="6667000" />
     </task>
     <servers />
   </component>
@@ -165,5 +165,15 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/backend" />
     </ignored-roots>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IllegalArgumentException" package="java.lang" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

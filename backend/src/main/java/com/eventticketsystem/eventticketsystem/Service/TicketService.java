@@ -8,6 +8,7 @@ import com.eventticketsystem.eventticketsystem.Repository.UserRepository;
 import com.eventticketsystem.eventticketsystem.dto.BuyTicketRequest;
 import com.eventticketsystem.eventticketsystem.dto.TicketTransferReply;
 import com.eventticketsystem.eventticketsystem.dto.TicketTransferRequest;
+import com.eventticketsystem.eventticketsystem.dto.TransferNotification;
 import jakarta.transaction.Transaction;
 import net.glxn.qrgen.QRCode;
 import org.springframework.core.io.ByteArrayResource;
@@ -131,7 +132,7 @@ public class TicketService {
         }
     }*/
 
-       //erstmal vllt alles einzelnt und dann schauen wie man das dynamisch machen kann
+    //erstmal vllt alles einzelnt und dann schauen wie man das dynamisch machen kann
     //weil dto hat felder die nicht immer beoetigt werde
     @Transactional
     public ResponseEntity<?> ticketTransfer(TicketTransferRequest ticketTransferRequest) {
@@ -156,11 +157,11 @@ public class TicketService {
 
             //!!!!!!! email schreiben, dass der Benutzter ein Transfer Request bekommen hat
             String subject = "Tickettransfer Request";
-            String text ="Hello"+ticketTransferRequest.getNewUserEmail()+"\n" +
-                    "you have received a new request for a Tickettransfer."+
+            String text = "Hello" + ticketTransferRequest.getNewUserEmail() + "\n" +
+                    "you have received a new request for a Tickettransfer." +
                     "Response to the request to get your ticket and the corresponding QRCode";
-            try{
-                emailService.sendMail(ticketTransferRequest.getNewUserEmail(),subject,text);
+            try {
+                emailService.sendMail(ticketTransferRequest.getNewUserEmail(), subject, text);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -180,7 +181,6 @@ public class TicketService {
     }
 
 
-
     public ResponseEntity<?> replyTicketTransfer(TicketTransferReply ticketTransferReply) {
         //vllt ein if statement eibnauen um zu schauen wenn in dem ticket schon declined oder accepted steht das man nicht aendern kann
         //sonst kann man die backend route einfach immer aufrufen
@@ -195,24 +195,24 @@ public class TicketService {
                 ticketRepository.save(changedTicket);
 
                 //email schreiben mit qrcode schicken
-                ByteArrayOutputStream stream = QRCode.from(changedTicket.getTicket_UUID()).withSize(255,255).stream();
+                ByteArrayOutputStream stream = QRCode.from(changedTicket.getTicket_UUID()).withSize(255, 255).stream();
                 byte[] qrBytes = stream.toByteArray();
                 ByteArrayResource qrAttachment = new ByteArrayResource(qrBytes);
 
-                String subject ="Ticket transfered";
-                String text = "Hello"+changedTicket.getUser()+"\n" +
-                        "you have successfully accepted the tickettransfer"+"\n" +
+                String subject = "Ticket transfered";
+                String text = "Hello" + changedTicket.getUser() + "\n" +
+                        "you have successfully accepted the tickettransfer" + "\n" +
                         "You can find your ticket in the attachment of the mail or in your App under ticekts!";
-                try{
-                    emailService.sendMailWithAttachment(changedTicket.getUser().getEmail(),subject,text,"ticket.png",qrAttachment);
+                try {
+                    emailService.sendMailWithAttachment(changedTicket.getUser().getEmail(), subject, text, "ticket.png", qrAttachment);
                 } catch (RuntimeException e) {
                     throw new RuntimeException(e);
                 }
 
                 //vllt noch eine email an den alten user das transfered wurde
-                Map<String,Object> response = new HashMap<>();
-                response.put("message","Transfer request got accepted");
-                response.put("ticketId",changedTicket.getTicket_id());
+                Map<String, Object> response = new HashMap<>();
+                response.put("message", "Transfer request got accepted");
+                response.put("ticketId", changedTicket.getTicket_id());
                 return ResponseEntity.ok(response);
             } else {
                 transferTicket.setTransferStatus(TransferStatus.cancelled);
@@ -222,18 +222,18 @@ public class TicketService {
 
 
                 String subject = "Tickettransfer declined";
-                String text = "Hello\n"+"your tickettransfer request got declined.\n" +
+                String text = "Hello\n" + "your tickettransfer request got declined.\n" +
                         "The ticket of the event is still yours!";
 
-                try{
-                    emailService.sendMail(transferTicket.getFromUser().getEmail(),subject,text);
+                try {
+                    emailService.sendMail(transferTicket.getFromUser().getEmail(), subject, text);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
 
                 Map<String, Object> response = new HashMap<>();
-                response.put("message","Transfer request got declined");
-                response.put("ticketId",transferTicket.getTicketId());
+                response.put("message", "Transfer request got declined");
+                response.put("ticketId", transferTicket.getTicketId());
                 return ResponseEntity.ok(response);
             }
         } catch (RuntimeException e) {
@@ -242,4 +242,20 @@ public class TicketService {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
         }
     }
+
+    public ResponseEntity<?> transferNotification(String email) {
+        try {
+            List<TransferNotification> transferNotifications = ticketTransferRepository.getTransferNotifications(email);
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "All your Notificaiotns");
+            response.put("data", transferNotifications);
+
+            return ResponseEntity.ok(response);
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 }
