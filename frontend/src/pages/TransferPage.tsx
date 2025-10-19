@@ -9,6 +9,7 @@ interface TransferTickets {
 
 function TransferPage({ username }: any) {
   const [transferTickets, setTransferTickets] = useState<TransferTickets[]>([]);
+  const [replied,setRepliped] = useState(false)
 
   async function getTransferNotification(): Promise<TransferTickets[]> {
     const response = await fetch(
@@ -49,7 +50,7 @@ function TransferPage({ username }: any) {
     if (!response.ok) {
       throw new Error("Could not reply to transfer request");
     }
-    //vllt mit bool hier auf true setye n und den unten in useeffect reinpacken wenn der sich aendert neu fetchen
+    setRepliped(true)
   }
 
   useEffect(() => {
@@ -59,7 +60,7 @@ function TransferPage({ username }: any) {
       setTransferTickets(tickets);
     };
     getTransfer();
-  }, []);
+  }, [replied]);
 
   return (
     <>

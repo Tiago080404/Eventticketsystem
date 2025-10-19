@@ -5,9 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3564c6a0-0295-4870-92c4-af7e2d751ef9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Repository/TicketTransferRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Repository/TicketTransferRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/dto/TransferNotification.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/dto/TransferNotification.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/TransferPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/TransferPage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -143,7 +140,7 @@
       <workItem from="1760602083954" duration="6840000" />
       <workItem from="1760703710558" duration="2076000" />
       <workItem from="1760883871826" duration="316000" />
-      <workItem from="1760884594393" duration="1856000" />
+      <workItem from="1760884594393" duration="2385000" />
     </task>
     <servers />
   </component>
