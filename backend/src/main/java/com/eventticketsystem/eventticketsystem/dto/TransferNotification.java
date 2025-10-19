@@ -4,18 +4,18 @@ public class TransferNotification {
     private String toUser;
     private String fromUser;
     private int quantity;
-    private int ticketId;
+    private int transfer_id;
     //private String ticketUUID
 
-    public TransferNotification(String toUser,String fromUser,int quantity,int ticketId){
+    public TransferNotification(String toUser,String fromUser,int quantity,int transfer_id){
         this.fromUser = fromUser;
         this.quantity=quantity;
         this.toUser = toUser;
-        this.ticketId = ticketId;
+        this.transfer_id = transfer_id;
     }
 
-    public void setTicketId(int ticketId) {
-        this.ticketId = ticketId;
+    public void setTransfer_id(int transfer_id) {
+        this.transfer_id = transfer_id;
     }
 
     public void setFromUser(String fromUser) {
@@ -34,8 +34,8 @@ public class TransferNotification {
         return fromUser;
     }
 
-    public int getTicketId() {
-        return ticketId;
+    public int getTransfer_id() {
+        return transfer_id;
     }
 
     public String getToUser() {

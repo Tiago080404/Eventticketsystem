@@ -10,6 +10,6 @@ import java.util.List;
 
 public interface TicketTransferRepository extends JpaRepository<TransferTicket, Long> {
 //query noch anpassen nur die ich brauche
-    @Query(value = "select tickettransfer.touser,tickettransfer.fromuser,tickets.quantity,tickettransfer.ticketid from tickets join tickettransfer on tickets.ticket_id = tickettransfer.ticketid where tickettransfer.touser = ?1 and tickettransfer.transferstatus='Pending'",nativeQuery = true)
+    @Query(value = "select tickettransfer.touser,tickettransfer.fromuser,tickets.quantity,tickettransfer.transfer_id from tickets join tickettransfer on tickets.ticket_id = tickettransfer.ticketid where tickettransfer.touser = ?1 and tickettransfer.transferstatus='Pending'",nativeQuery = true)
     List<TransferNotification> getTransferNotifications(String email);
 }
