@@ -90,6 +90,12 @@ public class TicketService {
     @Transactional
     public ResponseEntity<?> ticketTransfer(TicketTransferRequest ticketTransferRequest) {
         try {
+            if( checkIfTransferPending(ticketTransferRequest.getTicketId())){
+                Map<String,Object> response = new HashMap<>();
+                response.put("message","cant transfer because one transfer for this ticket is still open");
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).body(response);
+            }
+
             Tickets tickets = ticketRepository.findById(ticketTransferRequest.getTicketId())
                     .orElseThrow(() -> new RuntimeException("Ticket not found"));
             User oldUser = userRepository.findByEmail(ticketTransferRequest.getOldUserEmail())
@@ -217,5 +223,14 @@ public class TicketService {
         }
     }
 
+    public boolean checkIfTransferPending(Long ticketId) {
+        System.out.println("gsdkgsk");
+        boolean exists = ticketTransferRepository.getTransferTicketsByTicketId(ticketId);
+        if (exists) {
+            System.out.println("has already a status");
+            return true;
+        }
+        return false;
+    }
 
 }

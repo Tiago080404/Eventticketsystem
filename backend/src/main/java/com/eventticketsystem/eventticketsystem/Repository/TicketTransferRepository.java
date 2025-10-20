@@ -12,4 +12,7 @@ public interface TicketTransferRepository extends JpaRepository<TransferTicket, 
 //query noch anpassen nur die ich brauche
     @Query(value = "select tickettransfer.touser,tickettransfer.fromuser,tickets.quantity,tickettransfer.transfer_id from tickets join tickettransfer on tickets.ticket_id = tickettransfer.ticketid where tickettransfer.touser = ?1 and tickettransfer.transferstatus='Pending'",nativeQuery = true)
     List<TransferNotification> getTransferNotifications(String email);
+
+    @Query(value = "select case when count(*) > 0 then true else false end from tickettransfer where tickettransfer.ticketid = ?1 and tickettransfer.transferstatus='Pending' ",nativeQuery = true)
+    boolean getTransferTicketsByTicketId(Long ticketId);
 }
