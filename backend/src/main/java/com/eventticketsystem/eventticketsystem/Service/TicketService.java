@@ -182,10 +182,17 @@ public class TicketService {
 
 
     public ResponseEntity<?> replyTicketTransfer(TicketTransferReply ticketTransferReply) {
-        //vllt ein if statement eibnauen um zu schauen wenn in dem ticket schon declined oder accepted steht das man nicht aendern kann
-        //sonst kann man die backend route einfach immer aufrufen
         try {
             TransferTicket transferTicket = ticketTransferRepository.getById(ticketTransferReply.getTransferId());
+
+            if (transferTicket.getTransferStatus() == TransferStatus.transfered || transferTicket.getTransferStatus() == TransferStatus.cancelled) {
+                Map<String, Object> response = new HashMap<>();
+                response.put("message:", "Could not reply because Transfer got already accepted or declined");
+                response.put("ticketId", transferTicket.getTicketId());
+                return ResponseEntity.ok(response);
+            }
+
+
             if (ticketTransferReply.getStatusChange() == TransferStatus.transfered) {
                 transferTicket.setTransferStatus(TransferStatus.transfered);
                 ticketTransferRepository.save(transferTicket);
