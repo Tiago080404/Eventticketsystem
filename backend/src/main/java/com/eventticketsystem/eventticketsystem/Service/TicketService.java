@@ -86,53 +86,6 @@ public class TicketService {
         return boughtTicket;
     }
 
-    /*@Transactional
-    public ResponseEntity<?> ticketTransfer(TicketTransferRequest ticketTransferRequest){
-
-        try{
-            Tickets tickets = ticketRepository.findById(ticketTransferRequest.getTicketId())
-                    .orElseThrow(()->new RuntimeException("ticket not found"));
-            User userEnity = userRepository.findByEmail(ticketTransferRequest.getNewUserEmail())
-                    .orElseThrow(() -> new RuntimeException("User not found"));
-
-            System.out.println(tickets);
-
-            tickets.setUser(userEnity);
-            ticketRepository.save(tickets);
-
-
-
-
-            ByteArrayOutputStream stream = QRCode.from(tickets.getTicket_UUID()).withSize(255,255).stream();
-            byte[] qrBytes = stream.toByteArray();
-            ByteArrayResource qrAttachment = new ByteArrayResource(qrBytes);
-
-            String subject = "Ticket Transferiert";
-            String text = "Hallo sind Ihre Tickets:\n"+
-                    tickets.getEvents();
-
-            try{
-                emailService.sendMailWithAttachment(ticketTransferRequest.getNewUserEmail(),subject,text,"ticket.png",qrAttachment);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-
-
-            Map<String,Object> response = new HashMap<>();
-            response.put("message","Ticket got transfered!");
-            response.put("ticketId",tickets.getTicket_id());
-            response.put("newOwner",userEnity.getEmail());
-
-            return ResponseEntity.ok(response);
-
-        } catch (RuntimeException e) {
-            Map<String,String> errorResponse = new HashMap<>();
-            errorResponse.put("error",e.getMessage());
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
-        }
-    }*/
-
-    //erstmal vllt alles einzelnt und dann schauen wie man das dynamisch machen kann
     //weil dto hat felder die nicht immer beoetigt werde
     @Transactional
     public ResponseEntity<?> ticketTransfer(TicketTransferRequest ticketTransferRequest) {
