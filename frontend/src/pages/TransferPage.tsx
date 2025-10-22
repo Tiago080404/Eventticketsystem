@@ -13,7 +13,7 @@ function TransferPage({ username }: any) {
 
   async function getTransferNotification(): Promise<TransferTickets[]> {
     const response = await fetch(
-      `http://localhost:8080/api/tickets/transfer/notification/tim@gmail.com`,
+      `http://localhost:8080/api/tickets/transfer/notification/${username}`,
       {
         method: "GET",
         headers: {
@@ -40,7 +40,7 @@ function TransferPage({ username }: any) {
         headers: {
           "Content-Type": "application/json",
         },
-        //credentials: "include",
+        credentials: "include",
         body: JSON.stringify({
           statusChange: status,
           transferId: id,

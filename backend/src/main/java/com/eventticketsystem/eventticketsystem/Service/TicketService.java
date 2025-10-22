@@ -14,6 +14,9 @@ import net.glxn.qrgen.QRCode;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -142,7 +145,16 @@ public class TicketService {
 
     public ResponseEntity<?> replyTicketTransfer(TicketTransferReply ticketTransferReply) {
         try {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String loggedInUser = authentication.getName();
+
             TransferTicket transferTicket = ticketTransferRepository.getById(ticketTransferReply.getTransferId());
+            System.out.println(loggedInUser+transferTicket.getToUser().getEmail());
+            if(!loggedInUser.equals(transferTicket.getToUser().getEmail())){
+                Map<String,String> response = new HashMap<>();
+                response.put("message","Logged in user does not matched to User");
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).body(response);
+            }
 
             if (transferTicket.getTransferStatus() == TransferStatus.transfered || transferTicket.getTransferStatus() == TransferStatus.cancelled) {
                 Map<String, Object> response = new HashMap<>();

@@ -14,6 +14,23 @@ export interface Events {
 
 function Header({ onInputChange, searchedEvents }: ChildProps) {
   const [searchValue, setSearchValue] = useState("");
+
+  async function logout() {
+    try {
+      const response = await fetch("http://localhost:8080/api/auth/logout", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+          console.log(await response.text());
+   //jetyt noch einmal die checkauth aufrufen
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
     <section className="relative h-[60vh] bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center text-center text-white">
       <div className="absolute top-0 right-0 flex p-6 justify-end gap-6">
@@ -36,6 +53,7 @@ function Header({ onInputChange, searchedEvents }: ChildProps) {
         >
           Profile
         </Link>
+        <button onClick={logout}>Logout</button>
       </div>
       <div className="absolute top-24 left-1/2  transform -translate-x-1/2 flex flex-col md:flex-row items-center gap-4 w-[90%] max-w-3xl">
         <input

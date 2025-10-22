@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3564c6a0-0295-4870-92c4-af7e2d751ef9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Controller/TicketsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Controller/TicketsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Repository/TicketTransferRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Repository/TicketTransferRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Service/TicketService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Service/TicketService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,7 +54,7 @@
     &quot;Spring Boot.EventticketsystemApplication.executor&quot;: &quot;Run&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/tiago/Projects/javabackendprojects/eventticketsystem&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/tiago/Projects/javalearn&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -145,7 +144,14 @@
       <workItem from="1760883871826" duration="316000" />
       <workItem from="1760884594393" duration="2850000" />
       <workItem from="1760950958797" duration="12000" />
-      <workItem from="1760958017095" duration="8101000" />
+      <workItem from="1760958017095" duration="10882000" />
+      <workItem from="1761030003646" duration="4596000" />
+      <workItem from="1761034634742" duration="23000" />
+      <workItem from="1761046505597" duration="1340000" />
+      <workItem from="1761048192250" duration="466000" />
+      <workItem from="1761117534324" duration="25000" />
+      <workItem from="1761118055499" duration="4000" />
+      <workItem from="1761137962332" duration="3810000" />
     </task>
     <servers />
   </component>
