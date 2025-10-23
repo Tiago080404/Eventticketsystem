@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 type ChildProps = {
   onInputChange: (value: string) => void;
   searchedEvents: Events[];
+  logoutChange: () => void;
 };
 export interface Events {
   name: string;
@@ -12,7 +13,7 @@ export interface Events {
   price: number;
 }
 
-function Header({ onInputChange, searchedEvents }: ChildProps) {
+function Header({ onInputChange, searchedEvents, logoutChange }: ChildProps) {
   const [searchValue, setSearchValue] = useState("");
 
   async function logout() {
@@ -24,8 +25,8 @@ function Header({ onInputChange, searchedEvents }: ChildProps) {
           "Content-Type": "application/json",
         },
       });
-          console.log(await response.text());
-   //jetyt noch einmal die checkauth aufrufen
+      console.log(await response.text());
+      logoutChange();
     } catch (err) {
       console.log(err);
     }

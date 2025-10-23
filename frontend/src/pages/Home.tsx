@@ -15,12 +15,11 @@ type authFuncProp = {
   checkLoggedIn: boolean;
   username: string;
 };
-//hier childProp reintun bei app.tsx
+
 function Home({ checkAuth, checkLoggedIn,username }: authFuncProp) {
   const [text, setText] = useState("");
   const [events, setEvents] = useState<Events[]>([]);
   const [loggedIn, setLoggedIn] = useState(checkLoggedIn);
-//  const [username, setUsername] = useState("");
 
   const handleInputChange = (value: string) => {
     if (value.length >= 2) {
@@ -36,6 +35,11 @@ function Home({ checkAuth, checkLoggedIn,username }: authFuncProp) {
     //setUsername(value);
     checkAuth();
   };
+
+  const handleLogoutChange =()=>{
+    setLoggedIn(false)
+    checkAuth()
+  }
 
   async function getSearchEvents(): Promise<Events[]> {
     const response = await fetch(
@@ -79,6 +83,7 @@ function Home({ checkAuth, checkLoggedIn,username }: authFuncProp) {
           <Header
             onInputChange={handleInputChange}
             searchedEvents={events}
+            logoutChange={handleLogoutChange}
           ></Header>
 
           <Categories></Categories>
