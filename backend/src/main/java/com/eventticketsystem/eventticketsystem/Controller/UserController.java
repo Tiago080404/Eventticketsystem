@@ -4,6 +4,7 @@ import com.eventticketsystem.eventticketsystem.Entity.AuthRequest;
 import com.eventticketsystem.eventticketsystem.Entity.User;
 import com.eventticketsystem.eventticketsystem.Service.JwtService;
 import com.eventticketsystem.eventticketsystem.Service.UserService;
+import com.eventticketsystem.eventticketsystem.dto.UserDataResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.Duration;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -101,5 +103,11 @@ public class UserController {
                 "email", user.getEmail(),
                 "role", user.getRole()
         ));
+    }
+
+    @GetMapping("/userdata/{user}")
+    public ResponseEntity<?> getDataOfUser(@PathVariable String user){
+        List<UserDataResponse> userDataResponse= userService.getUserData(user);
+        return ResponseEntity.ok().body(userDataResponse);
     }
 }

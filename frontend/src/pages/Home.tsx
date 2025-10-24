@@ -16,7 +16,7 @@ type authFuncProp = {
   username: string;
 };
 
-function Home({ checkAuth, checkLoggedIn,username }: authFuncProp) {
+function Home({ checkAuth, checkLoggedIn, username }: authFuncProp) {
   const [text, setText] = useState("");
   const [events, setEvents] = useState<Events[]>([]);
   const [loggedIn, setLoggedIn] = useState(checkLoggedIn);
@@ -36,10 +36,10 @@ function Home({ checkAuth, checkLoggedIn,username }: authFuncProp) {
     checkAuth();
   };
 
-  const handleLogoutChange =()=>{
-    setLoggedIn(false)
-    checkAuth()
-  }
+  const handleLogoutChange = () => {
+    setLoggedIn(false);
+    checkAuth();
+  };
 
   async function getSearchEvents(): Promise<Events[]> {
     const response = await fetch(

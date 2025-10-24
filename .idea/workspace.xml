@@ -6,6 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="3564c6a0-0295-4870-92c4-af7e2d751ef9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Home.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,6 +156,12 @@
       <workItem from="1761118055499" duration="4000" />
       <workItem from="1761137962332" duration="3970000" />
       <workItem from="1761201451133" duration="145000" />
+      <workItem from="1761203010296" duration="302000" />
+      <workItem from="1761209396416" duration="1534000" />
+      <workItem from="1761212767647" duration="4000" />
+      <workItem from="1761227207133" duration="2773000" />
+      <workItem from="1761292897280" duration="40000" />
+      <workItem from="1761294129705" duration="3097000" />
     </task>
     <servers />
   </component>

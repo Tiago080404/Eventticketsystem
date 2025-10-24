@@ -2,11 +2,13 @@ package com.eventticketsystem.eventticketsystem.Service;
 
 import com.eventticketsystem.eventticketsystem.Entity.User;
 import com.eventticketsystem.eventticketsystem.Repository.UserRepository;
+import com.eventticketsystem.eventticketsystem.dto.UserDataResponse;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -31,5 +33,10 @@ public class UserService implements UserDetailsService {
 
     public Optional<User> getUserByEmail(String email){
         return userRepository.findByEmail(email);
+    }
+
+
+    public List<UserDataResponse> getUserData(String user){
+    return userRepository.getUserData(user);
     }
 }
