@@ -6,11 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="3564c6a0-0295-4870-92c4-af7e2d751ef9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Repository/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/eventticketsystem/eventticketsystem/Service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Home.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Profile.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +55,7 @@
     &quot;Spring Boot.EventticketsystemApplication.executor&quot;: &quot;Run&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/tiago/Projects/javalearn&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/tiago/Projects/javabackendprojects/kinosoftware&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -161,7 +159,27 @@
       <workItem from="1761212767647" duration="4000" />
       <workItem from="1761227207133" duration="2773000" />
       <workItem from="1761292897280" duration="40000" />
-      <workItem from="1761294129705" duration="3097000" />
+      <workItem from="1761294129705" duration="3468000" />
+      <workItem from="1761305625985" duration="32000" />
+      <workItem from="1761310639932" duration="1275000" />
+      <workItem from="1761556712930" duration="50000" />
+      <workItem from="1761560803418" duration="19000" />
+      <workItem from="1761560878276" duration="202000" />
+      <workItem from="1761566121622" duration="92000" />
+      <workItem from="1761567731519" duration="34000" />
+      <workItem from="1761567804036" duration="26000" />
+      <workItem from="1761567884681" duration="60000" />
+      <workItem from="1761568208733" duration="16000" />
+      <workItem from="1761568304015" duration="4000" />
+      <workItem from="1761568677489" duration="1347000" />
+      <workItem from="1761570695448" duration="118000" />
+      <workItem from="1761571052387" duration="34000" />
+      <workItem from="1761574560709" duration="1018000" />
+      <workItem from="1761576003733" duration="426000" />
+      <workItem from="1761576750733" duration="32000" />
+      <workItem from="1761646998861" duration="44000" />
+      <workItem from="1761653910646" duration="9000" />
+      <workItem from="1762010184816" duration="3626000" />
     </task>
     <servers />
   </component>
